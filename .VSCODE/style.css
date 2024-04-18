@@ -1,0 +1,220 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+/*é possivel adicionar uma outra classe para o mesmo programa/site adicionando uma nova classe  no html, em seguida fazer um root e um light ou o nome q quiser, adicionar suas variaveis*/
+:root {
+  --text-color: white;
+  --bg-url: url(./assets/bg-mobile.jpg);
+  --stroke-color: rgba(255, 255, 255, 0.5);
+  --surface-color: rgba(255, 255, 255, 0.05);
+  --surface-color-hover: rgba(255, 255, 255, 0.02);
+  --highlight-color:  rgba(0, 0, 0, 0.1);
+  --switch-bg-url: url(./assets/moon-stars.svg);
+}
+
+.light {
+  --text-color: Black;
+  --bg-url: url(./assets/bg-mobile-light.jpg);
+  --stroke-color: rgba(0, 0, 0, 0.5);
+  --surface-color: rgba(0, 0, 0, 0.05);
+  --surface-color-hover: rgba(0, 0, 255, 0.02);
+  --highlight-color:  rgba(0, 0, 0, 0.1);
+  --switch-bg-url: url(./assets/sun.svg);
+}
+body {
+    /*
+    background-image: url(./assets/bg-mobile.jpg);
+    background-repeat: no-repeat;
+    background-position: top center;
+    background-size: cover; 
+    */
+    /*
+      Acima está o codigo completo, pode ser feito dessa maneira e significa:
+      url é para pesquisar onde está a imagem, qual pasta ou :link
+        no-repeat deixa uma unica imagem na pagina, sem repetições
+        top center centraliza amagem, apenas center coloca o meio dela em cima
+        a imagem é feita em x (lateral) e y (cima/baixo) 
+        o size demini o tamnho e cover é preenchimento do espaço */
+
+    /* ABAIXO ESTÁ O CODIGO "ATALHO OU SHORT HEND" CODIGO ACIMA SIMPLIFICADO*/
+    /* background: color image repeat position/size */
+  background: var(--bg-url) no-repeat top center/cover;
+  height: 100vh; /*comando para a imagem background fique completa e nao corte a tela*/
+}
+/* o "*" seletor univesal */
+body * { 
+  font-family: "Inter", sans-serif;
+  color: var(--text-color);
+
+}
+#container {
+  width: 100%; /* largura total para todas as telas*/
+  max-width: 588px; /* largura ficar presa em 588px no max*/
+                /* height: não se utiliza muito, pois a altura se ajusta junto com 
+                oconteudo.*/
+  margin: 56px auto 0px;
+  padding: 0 24px;
+                /*margin: auto; regra de css nao aplica a margem em cima da imagem apenas nos lados*/
+                /*Comando "margin: auto;" substituiu todos os comandos: top, right, bottom e left*/
+                /*o comando de margin pode ser dado simplificado, apenas com a escrita "margin:" e 
+                seus valores, os valores sao lidosda seguinte maneira:
+                margin: 56px auto; referente a cima/baixo-direita/esquerda
+                margin: 56px auto 56px; cima - lados - baixo
+                margin: 56px auto 56px auto; sentido horarios - sempre */
+}
+          /* div é um elemente block, que não fica em linha com outro e IMG e um elemente 
+          inline e não tem como aplicar margin auto*/
+          /* existem elementos que são block e outros inline e algumas regras nao se aplicam*/
+          /* display inline ou em linha aceita um comando "pai" que pode centralizar ou colocar 
+          imagens a direita. Já o display block não aceita*/
+/* comando para centralizar a imagem:*/
+#profile {
+  text-align: center;
+  padding: 24px;
+}
+#profile img {
+  display: block;
+  width: 112px;
+  margin: auto; 
+  /* pode ser assim também*/
+}
+/*profile*/
+#profile p {
+  font-weight: 500; 
+  font-size: 16px;
+  line-height: 24px;  /* altura da lina*/
+  margin-top: 8px;
+}
+#switch {
+  position: relative; /* está posição é mais relevante para outras posições dentro do comando switch, logo os position abaixo obedecem a este*/
+   width: 70px;
+   margin: 4px auto;
+}
+#switch button {
+  width: 32px;
+  height: 32px;
+  background: white var(--switch-bg-url) no-repeat center;
+  border: 0;
+  border-radius: 50%;
+
+  position: absolute; /*quer dizer que a posição dele é absoluta, se sobrepoem a outros*/ 
+  top: 50%;
+  left: 0; /* deixa o icone a esquerda da posição switch*/
+  z-index: 1; /* z-index coloca a imagem na ordem que vc quiser, colocar na posição 1 significa que está acima de 0 e se fosse 2 acima das duas */
+  transform: translateY(-50%); /*usado para alinhar os posicionamentos dos icones, a opção transform abre muitas variaveis de alinharmento, e junto com a opção top 50% consegue centralizar o icone*/
+  animation: slide-back 0.2s; 
+}
+
+.light #switch button {
+  /* right: 0;
+  left: initial; comandos trocados por "animation" para suavizar o movimento*/
+  animation: slide-in 0.2s forwards /*mantem a posição final da animation*/; 
+}
+
+#switch button:hover {
+  outline: 8px solid var(--highlight-color);
+}
+#switch span {
+  /*span é um display inline e nao aceita alguns comandos, então necessita do seguinte comando:*/
+  display: block;
+  width: 64px;
+  height: 24px;
+  background: var(--surface-color);
+  border: 1px solid var(--stroke-color);
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+  border-radius: 9999px;
+}
+
+/*css e o html vao por elementos um abaixo do outro se forem inline e abaixo se forem block*/
+/* links - "ul" controla a lista inteira dos links, "ul" "li" controla cada um separadamente */
+ul {
+  list-style: none; /* tirar estilo da lista - pontos, números...*/
+  display: flex;
+  flex-direction: column;
+  gap: 16px; /* gap da espaço entre cada um dos links, seja lado a lado ou cima/baixo*/
+  padding: 24px 0;
+}
+ul li a{
+  display: flex;
+  align-items: center;/*centraliza o texto no meio da linha cima/baixo*/
+  justify-content: center; /*centraliza o texto de lado a lado*/
+  
+  padding: 16px 24px;
+
+  background: var(--surface-color);
+  border: 1px solid var(--stroke-color);
+  border-radius: 8px;
+
+  backdrop-filter: blur(4px); /*deixa a borda mais arredondada*/
+  -webkit-backdrop-filter: blur(4px);
+
+  text-decoration: none; /* tirar a linha das caixas, tem outros tipos de linhas*/
+  font-weight: 500;
+
+  transition: background 0.2s; /*faz a transição de cor dos links */
+}
+/*pseudo-selector: aplica as coisas ao passar o mouse, deixa mais marcado*/
+ul li a:hover{
+  background: var(--surface-color-hover);
+  border: 1.5px solid var(--text-color);
+}
+#social-links {
+  display: flex;
+  padding: 24px 0px;
+  font-size: 40px; /* tamanho dos icones*/
+  justify-content: center; /* alinha no meio*/
+}
+
+/*para alinhar os icones usar:*/
+#social-links a {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 16px;
+  transition: background 0.2s;
+  border-radius: 50%;
+}
+
+#social-links a:hover {
+  background: var(--highlight-color);
+}
+
+footer {
+  padding: 24px 0;
+  text-align: center;
+  font-size: 14px;
+}
+
+
+/*Quando quiser colocar um link para abrir uma nova guia se colocar um atributo chamado "targer="blank"*/
+
+/* Midia Queries é uma midia que consegue trocar a imagem para mais ambientes. so funcionam quando tem a linha "meta: viewport"*/
+@media (min-width: 700px) {
+  :root {
+    --bg-url: url(./assets/bg-desktop.jpg);
+  }
+  .light {
+    --bg-url: url(./assets/bg-desktop-light.jpg);
+  }
+}
+
+/*animation*/
+@keyframes slide-in{
+  from {
+    left: 0
+  }
+  to {
+    left: 50%
+  }
+}
+
+@keyframes slide-back{
+  from {
+    left: 50%
+  }
+  to {
+    left: 0%
+  }
+}
