@@ -49,7 +49,7 @@ body * {
 
 }
 #container {
-  /* width: 100%;  largura total para todas as telas*/
+  width: 80%  /*  largura total para todas as telas*/
   max-width: 588px; /* largura ficar presa em 588px no max*/
                 /* height: não se utiliza muito, pois a altura se ajusta junto com 
                 oconteudo.*/
